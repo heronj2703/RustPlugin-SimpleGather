@@ -10,10 +10,12 @@ using VLB;
 
 namespace Oxide.Plugins
 {
-    [Info("SimpleGather","Jezz","0.0.1")]
+    [Info("Simple Gather","Jezz","0.0.1")]
     [Description("A simple gather rate changer for the game rust")]
     public class SimpleGather : CovalencePlugin
     {
+
+        config = LoadConfig()
         #region Config and Dictionary Initialization
         private class PluginConfig
         {
@@ -35,7 +37,7 @@ namespace Oxide.Plugins
         private void Init()
         {
             config = Config.ReadObject<PluginConfig>();
-            Dictionaryinit();
+
         }
 
         protected override void LoadDefaultConfig()
@@ -62,17 +64,15 @@ namespace Oxide.Plugins
 
 
 
-        IDictionary<string, int> gathermultiplier = new Dictionary<string, int>();
-
-        public void Dictionaryinit()
+        IDictionary gathermultiplier = new Dictionary
         {
-            gathermultiplier.Add("stones", config.GatherRateStone);
-            gathermultiplier.Add("metal.ore", config.GatherRateMetal);
-            gathermultiplier.Add("sulfur.ore", config.GatherRateSulfur);
-            gathermultiplier.Add("wood", config.GatherRateWood);
-            gathermultiplier.Add("flesh", config.GatherRateFlesh);
-            gathermultiplier.Add("hemp", config.GatherRateCloth);
-        }
+            ["stones"] = config.GatherRateStone,
+            ["metal.ore"] = config.GatherRateMetal,
+            ["sulfur.ore"] = config.GatherRateSulfur,
+            ["wood"] = config.GatherRateWood,
+            ["flesh"] = config.GatherRateFlesh,
+            ["hemp"] = config.GatherRateCloth
+        };
 
         #endregion
 
@@ -95,7 +95,6 @@ namespace Oxide.Plugins
         #region Gather Rate Changing
         void OnDispenserGather(ResourceDispenser dispenser, BaseEntity entity, Item item)
         {
-            PrintError("gathered");
             if (config.EnableGatherRate)
             {
                 if (dispenser.gatherType.ToString() == "Flesh")
