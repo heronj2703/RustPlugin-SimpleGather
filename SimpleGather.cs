@@ -10,7 +10,7 @@ using VLB;
 
 namespace Oxide.Plugins
 {
-    [Info("Simple Gather","Jezz","0.0.1")]
+    [Info("Simple Gather","Jezz","0.0.2")]
     [Description("A simple gather rate changer for the game rust")]
     public class SimpleGather : CovalencePlugin
     {
