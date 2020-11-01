@@ -14,10 +14,7 @@ namespace Oxide.Plugins
     [Description("A simple gather rate changer for the game rust")]
     public class SimpleGather : CovalencePlugin
     {
-        public void LoadConfig()
-        {
-            config = LoadConfig()
-        }
+        
         
         #region Config and Dictionary Initialization
         private class PluginConfig
@@ -46,6 +43,11 @@ namespace Oxide.Plugins
         protected override void LoadDefaultConfig()
         {
             Config.WriteObject(GetDefaultConfig(), true);
+        }
+
+        public void LoadConfig()
+        {
+            config = Config.ReadObject();
         }
 
         private PluginConfig GetDefaultConfig()
